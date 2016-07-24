@@ -8,7 +8,7 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
-            'baseUrl' => '',
+            'baseUrl' => '/proyectoasi2',
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'DROTmY-7YEgCT8JXoCcInAQvnL7jLdKV',
         ],
