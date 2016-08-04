@@ -27,7 +27,7 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password'], 'required','message' => '{attribute} es requerido'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -48,7 +48,7 @@ class LoginForm extends Model
             $user = $this->getUser();
 
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, 'Usuario o clave incorrecta');
             }
         }
     }
@@ -77,5 +77,21 @@ class LoginForm extends Model
         }
 
         return $this->_user;
+    }
+
+    /**
+    * Returns the attribute labels.
+    *
+    * See Model class for more details
+    *  
+    * @return array attribute labels (name => label).
+    */
+    public function attributeLabels()
+    {
+        return [
+            'username'  => 'Usuario',
+            'password'  => 'Clave',
+            'rememberMe'=> 'Recuerda me'
+        ];
     }
 }

@@ -27,6 +27,15 @@ class SiteController extends Controller
                         'roles' => ['@'],
                     ],
                 ],
+                'class'=>AccessControl::className(),
+                'only'=>['index'],
+                'rules'=>[
+                    [
+                        'actions'=>['index'],
+                        'allow'=>true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),
