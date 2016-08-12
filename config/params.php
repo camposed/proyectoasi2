@@ -2,5 +2,5 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'empresa'=>'Alcaldia municipal de Santa Tecla',
+    'empresa'=>'Alcaldia Municipal de Santa Tecla',
 ];
