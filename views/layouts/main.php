@@ -57,16 +57,14 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <!--  //Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],])  -->
         <?= $content ?>
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; <?= Yii::$app->params['empresa'].' '.date('Y') ?></p>
+        <p class="pull-left"><?=  Html::img('@web/img/escudo.png')?>  &copy; <?= Yii::$app->params['empresa'].' '.date('Y') ?></p>
     </div>
 </footer>
 
