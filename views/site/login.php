@@ -11,7 +11,7 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+
 
     <!-- <p>Please fill out the following fields to login:</p> -->
 
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
-
+        <h1><?= Html::encode($this->title) ?></h1>
         <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
         <?= $form->field($model, 'password')->passwordInput() ?>
         <?= $form->field($model, 'rememberMe')->checkbox([
