@@ -20,6 +20,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/reset.css" rel="stylesheet" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -60,7 +61,7 @@ AppAsset::register($this);
 
         <!-- Sidebar -->
 
-        <?php if(yii::$app->user->identity){ ?>
+        <?php if(!Yii::$app->user->getIsGuest()){ ?>
         <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <?= MenuMaker::make(yii::$app->user->id) ?>
