@@ -44,3 +44,10 @@ $this->params['breadcrumbs'][] = $this->title;
         -->
     </div>
 </div>
+<style>
+    @media(min-width:768px) {
+        #wrapper {
+            padding-left: 0;
+        }
+    }
+</style>

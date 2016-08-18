@@ -6,9 +6,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use yii\web\Session;
+use util\MenuMaker;
+
+
+
 
 AppAsset::register($this);
 ?>
@@ -53,22 +55,29 @@ AppAsset::register($this);
         ],
     ]);
     NavBar::end();
-    
-
-    
     ?>
 
-    <div class="container">
+    <div id="wrapper">
         <!--  //Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],])  -->
-        <?= $content ?>
+
+        <!-- Sidebar -->
+
+        <?php if(yii::$app->user->identity){ ?>
+        <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <?= MenuMaker::make(yii::$app->user->id) ?>
+                </ul>
+        </div>
+        <?php }?>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <?= $content ?>
+            </div>
+
+        </div>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left"><?=  Html::img('@web/img/escudo.png')?>  &copy; <?= Yii::$app->params['empresa'].' '.date('Y') ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>

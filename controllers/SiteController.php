@@ -5,53 +5,14 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use util\Log;
-use util\MenuMaker;
 
-class SiteController extends Controller
+
+class SiteController extends BaseController
 {
-	
-	
-	
-	
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-                'class'=>AccessControl::className(),
-                'only'=>['index'],
-                'rules'=>[
-                    [
-                        'actions'=>['index'],
-                        'allow'=>true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
 
     /**
      * @inheritdoc
@@ -76,10 +37,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-    	
-    	var_dump(MenuMaker::make());
-    	
-    	
         return $this->render('index');
     }
 
