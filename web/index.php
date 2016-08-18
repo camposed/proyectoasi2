@@ -9,6 +9,7 @@ require(__DIR__ . '/../vendor/yiisoft/yii2/Yii.php');
 require(__DIR__ . '/../util/Log.php');
 require(__DIR__ . '/../util/Session.php');
 require(__DIR__ . '/../util/MenuMaker.php');
+require(__DIR__ . '/../util/Acf.php');
 
 $config = require(__DIR__ . '/../config/web.php');
 

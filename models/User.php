@@ -160,5 +160,17 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password){
     	return ($password === $this->clave);
     }
-    
+
+
+    public function getRoles()
+    {
+
+            return Rol::find()->
+                leftJoin('usuario_rol',
+                         'rol.id_rol = usuario_rol.id_rol',
+                        ['usuario_rol.id_usuario'=>$this->id_usuario,
+                         'rol.activo'=>'A']
+            )->all();
+    }
+
 }

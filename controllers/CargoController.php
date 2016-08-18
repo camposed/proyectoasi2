@@ -8,18 +8,29 @@
 
 namespace app\controllers;
 
+use yii;
+use util\Acf;
 
 
 
 class CargoController extends BaseController
 {
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
+    const ADMIN = 'ADMINISTRADOR';
+
+
     public function actionIndex()
     {
-      echo 1;
+
+    }
+
+
+
+    public function beforeAction($action)
+    {
+        parent::beforeAction($action);
+
+        if (!Acf::hasRol(static::ADMIN)){
+            throw new \yii\web\ForbiddenHttpException('No tienes permisos');
+        }
     }
 }
