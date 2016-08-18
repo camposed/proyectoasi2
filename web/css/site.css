@@ -205,6 +205,22 @@ label.col-lg-1{
 	width: auto;
 }
 
+
+@media(max-width:768px){
+	#login-form{
+		margin-top: 80px;
+	}
+	
+	.navbar-inverse .navbar-nav > li{
+		background: rgba(24, 104, 179, 0.8) !important;
+	}
+	.navbar-header{
+		height: 74px;
+	}
+	.navbar-nav{
+		margin-top:0 !important;
+	}
+}
 @media(min-width:768px) {
     #wrapper {
         padding-left: 250px;
