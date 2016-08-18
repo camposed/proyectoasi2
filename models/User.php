@@ -2,103 +2,163 @@
 
 namespace app\models;
 
-class User extends \yii\base\Object implements \yii\web\IdentityInterface
+use Yii;
+use yii\web\Session;
+
+/**
+ * This is the model class for table "usuario".
+ *
+ * @property integer $id_usuario
+ * @property string $nombre
+ * @property string $clave
+ * @property string $fecha_creacion
+ * @property string $estado
+ * @property integer $id_empleado
+ *
+ * @property LogUsuario[] $logUsuarios
+ * @property Empleado $idEmpleado
+ * @property UsuarioRol[] $usuarioRols
+ * @property Rol[] $idRols
+ */
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
-    public $id;
-    public $username;
-    public $password;
-    public $authKey;
-    public $accessToken;
-
-    private static $users = [
-        '100' => [
-            'id' => '100',
-            'username' => 'admin',
-            'password' => 'admin',
-            'authKey' => 'test100key',
-            'accessToken' => '100-token',
-        ],
-        '101' => [
-            'id' => '101',
-            'username' => 'demo',
-            'password' => 'demo',
-            'authKey' => 'test101key',
-            'accessToken' => '101-token',
-        ],
-    ];
-
+	
+	const ACTIVO 	= 'A';
+	const BLOQUEADO = 'B';
+	
+	public $data = 1;
+	
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'usuario';
+    }
 
     /**
      * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['nombre', 'clave', 'id_empleado'], 'required'],
+            [['fecha_creacion'], 'safe'],
+            [['estado'], 'string'],
+            [['id_empleado'], 'integer'],
+            [['nombre'], 'string', 'max' => 45],
+            [['clave'], 'string', 'max' => 255],
+            [['nombre'], 'unique'],
+            [['id_empleado'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['id_empleado' => 'id_empleado']],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id_usuario' => 'Id Usuario',
+            'nombre' => 'Nombre',
+            'clave' => 'Clave',
+            'fecha_creacion' => 'Fecha Creacion',
+            'estado' => 'Estado',
+            'id_empleado' => 'Id Empleado',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLogUsuarios()
+    {
+        return $this->hasMany(LogUser::className(), ['usuario' => 'id_usuario']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdEmpleado()
+    {
+        return $this->hasOne(Employee::className(), ['id_empleado' => 'id_empleado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsuarioRols()
+    {
+        return $this->hasMany(UserRol::className(), ['id_usuario' => 'id_usuario']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIdRols()
+    {
+        return $this->hasMany(Rol::className(), ['id_rol' => 'id_rol'])->viaTable('usuario_rol', ['id_usuario' => 'id_usuario']);
+    }
+    
+    /*
+     * SECURITY
+     * */
+    
+    /**
+     * Finds an identity by the given ID.
+     *
+     * @param string|integer $id the ID to be looked for
+     * @return IdentityInterface|null the identity object that matches the given ID.
      */
     public static function findIdentity($id)
     {
-        return isset(self::$users[$id]) ? new static(self::$users[$id]) : null;
+    	return static::findOne($id);
     }
-
+    
     /**
-     * @inheritdoc
+     * Finds an identity by the given token.
+     *
+     * @param string $token the token to be looked for
+     * @return IdentityInterface|null the identity object that matches the given token.
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        foreach (self::$users as $user) {
-            if ($user['accessToken'] === $token) {
-                return new static($user);
-            }
-        }
-
-        return null;
+    	
     }
-
+    
     /**
-     * Finds user by username
-     *
-     * @param string $username
-     * @return static|null
-     */
-    public static function findByUsername($username)
-    {
-        foreach (self::$users as $user) {
-            if (strcasecmp($user['username'], $username) === 0) {
-                return new static($user);
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @inheritdoc
+     * @return int|string current user ID
      */
     public function getId()
     {
-        return $this->id;
+    	return $this->id_usuario;
     }
-
+    
     /**
-     * @inheritdoc
+     * @return string current user auth key
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+    	//return $this->auth_key;
     }
-
+    
     /**
-     * @inheritdoc
+     * @param string $authKey
+     * @return boolean if auth key is valid for current user
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+    	return $this->getAuthKey() === $authKey;
     }
-
-    /**
-     * Validates password
-     *
-     * @param string $password password to validate
-     * @return boolean if password provided is valid for current user
-     */
-    public function validatePassword($password)
-    {
-        return $this->password === $password;
+    
+    
+    public static function findByUserName($userName){
+    	return static::findOne(['nombre'=>$userName,'estado'=>User::ACTIVO]);
     }
+    
+    
+    public function validatePassword($password){
+    	return ($password === $this->clave);
+    }
+    
 }

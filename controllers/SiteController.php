@@ -2,15 +2,22 @@
 
 namespace app\controllers;
 
+
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use util\Log;
+use util\MenuMaker;
 
 class SiteController extends Controller
 {
+	
+	
+	
+	
     /**
      * @inheritdoc
      */
@@ -69,6 +76,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+    	
+    	var_dump(MenuMaker::make());
+    	
+    	
         return $this->render('index');
     }
 
@@ -85,6 +96,7 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        	Log::log(Log::LOGIN);
             return $this->goBack();
         }
         return $this->render('login', [
@@ -98,7 +110,8 @@ class SiteController extends Controller
      * @return string
      */
     public function actionLogout()
-    {
+    {	
+    	Log::log(Log::LOGOUT);
         Yii::$app->user->logout();
 
         return $this->goHome();

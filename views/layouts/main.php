@@ -8,6 +8,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\web\Session;
 
 AppAsset::register($this);
 ?>
@@ -39,13 +40,11 @@ AppAsset::register($this);
             ['label' => 'Inicio', 'url' => ['/site/index']],
             ['label' => 'Información', 'url' => ['/site/about']],
             ['label' => 'Contacto', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Logeo', 'url' => ['/site/login']]
-            ) : (
+            Yii::$app->user->isGuest ? (['label' => 'Logeo', 'url' => ['/site/login']]) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    'Logout',
                     ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
@@ -54,6 +53,9 @@ AppAsset::register($this);
         ],
     ]);
     NavBar::end();
+    
+
+    
     ?>
 
     <div class="container">
