@@ -12,8 +12,10 @@ class MenuMaker{
 	 			from('link')->
 	 			innerJoin('menu','link.menu = menu.id_menu')->
 	 			innerJoin('rol', 'rol.id_rol = menu.rol')->
-	 			innerJoin('usuario_rol','usuario_rol.id_rol = rol.id_rol', ['usuario_rol.id_usuario'=>$userId])->all();
-var_dump($rows);
+	 			innerJoin('usuario_rol','usuario_rol.id_rol = rol.id_rol')->
+         		where(['usuario_rol.id_usuario'=>$userId])->
+         		all();
+
 
             foreach ($rows as $row) {
 
