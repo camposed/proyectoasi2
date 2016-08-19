@@ -205,6 +205,9 @@ label.col-lg-1{
 	width: auto;
 }
 
+.text-onbox h4{
+	text-align: center;
+}
 
 @media(max-width:768px){
 	#login-form{
@@ -219,6 +222,9 @@ label.col-lg-1{
 	}
 	.navbar-nav{
 		margin-top:0 !important;
+	}
+	.navbar-form{
+		margin:0;
 	}
 }
 @media(min-width:768px) {

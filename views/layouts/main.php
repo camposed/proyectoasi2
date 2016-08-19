@@ -13,6 +13,10 @@ use util\MenuMaker;
 
 
 AppAsset::register($this);
+	$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => '/img/favicon.png']);
+	$this->registerJsFile(Yii::$app->request->baseUrl.'/js/Chart.min.js',['depends' => [\yii\web\JqueryAsset::className()],'position'=>\yii\web\View::POS_END]);
+	$this->registerJsFile(Yii::$app->request->baseUrl.'/js/index.js',['depends' => [\yii\web\JqueryAsset::className()],'position'=>\yii\web\View::POS_END]);
+	
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -24,7 +28,6 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link rel="shortcut icon" href="<?php echo Yii::$app->request->baseUrl; ?>/img/favicon.png?v=1" type="image/x-icon" />
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -79,6 +82,7 @@ AppAsset::register($this);
 </div>
 
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>
