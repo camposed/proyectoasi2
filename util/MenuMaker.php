@@ -8,7 +8,8 @@ use yii\helpers\Url;
 
 class MenuMaker{
 	 public static function make($userId = null){
-         $rows =	     Link::find()->
+
+         $rows  = Link::find()->
 	 			from('link')->
 	 			innerJoin('menu','link.menu = menu.id_menu')->
 	 			innerJoin('rol', 'rol.id_rol = menu.rol')->
