@@ -25,7 +25,7 @@ abstract class BaseController extends Controller
      * @return array
      * this functiones define, rules to check for access
      */
-    public function behaviors()
+    public function behaviors() 
     {
     	$this->rules  = $this->defineRules();
     	$access = [
