@@ -12,13 +12,22 @@ use yii;
 
 class Acf
 {
+	
+	const ADMIN = 'ADMINISTRADOR';
+	const OPER  = 'OPERADOR';
+	const SUPER = 'SUPERVISOR';
+	
     public static function hasRol($rol){
-        $array = yii::$app->user->identity->getRoles();
-        foreach ($array as $row){
-            if ($row['rol'] === $rol){
-                echo 1;
-            }
-        }
+    	$user  = yii::$app->user->identity; 
+    	if($user!=null){
+    		$array = $user->getRoles();
+    		
+    		foreach ($array as $row){
+    			if ($row['rol'] === $rol){
+    				return true;
+    			}
+    		}	
+    	}
         return false;
     }
 }

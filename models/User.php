@@ -164,13 +164,10 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function getRoles()
     {
-
             return Rol::find()->
-                leftJoin('usuario_rol',
-                         'rol.id_rol = usuario_rol.id_rol',
-                        ['usuario_rol.id_usuario'=>$this->id_usuario,
-                         'rol.activo'=>'A']
-            )->all();
+            leftJoin('usuario_rol','rol.id_rol = usuario_rol.id_rol')->
+            where(['usuario_rol.id_usuario'=>$this->id_usuario,'rol.activo'=>'A'])->
+            all();
     }
 
 }

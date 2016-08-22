@@ -4,11 +4,10 @@ namespace app\controllers;
 
 
 use Yii;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use util\Log;
+use util\Acf;
 
 
 class SiteController extends BaseController
@@ -101,4 +100,13 @@ class SiteController extends BaseController
     {
         return $this->render('about');
     }
+    
+    
+    function defineRules(){
+    }
+    
+    function chekAuthRules($action,$rule){
+    	
+    }
+    
 }

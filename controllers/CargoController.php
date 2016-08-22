@@ -15,22 +15,31 @@ use util\Acf;
 
 class CargoController extends BaseController
 {
-    const ADMIN = 'ADMINISTRADOR';
+   
 
 
     public function actionIndex()
     {
-
+		
     }
 
 
 
-    public function beforeAction($action)
-    {
-        parent::beforeAction($action);
-
-        if (!Acf::hasRol(static::ADMIN)){
-            throw new \yii\web\ForbiddenHttpException('No tienes permisos');
-        }
+    
+    function defineRules(){
+    	return [
+    			'index'=>[
+    					Acf::ADMIN
+    			],
+    			'create'=>[
+    					Acf::ADMIN
+    			],
+    			'update'=>[
+    					Acf::ADMIN
+    			],
+    			'delete'=>[
+    					Acf::ADMIN
+    			]
+    	];
     }
 }
