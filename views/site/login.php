@@ -15,30 +15,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!-- <p>Please fill out the following fields to login:</p> -->
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n
-        					<div class=\"col-lg-10\">{input}</div>\n
-        					<div class=\"col-lg-10\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-2 control-label'],
-        ],
-    ]); ?>
-        <h1><?= Html::encode($this->title) ?></h1>
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-        <?= $form->field($model, 'password')->passwordInput() ?>
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-5\">{input} {label}</div>\n<div class=\"col-lg-6\">{error}</div>",
-        ]) ?>
+    <div id="login-form" class="form-horizontal"  >
+   <h1>Login</h1>
+        <div class="form-group field-loginform-username required">
+<label class="col-lg-2 control-label" for="loginform-username">Usuario</label>
 
+                            <div class="col-lg-10"><input type="text" id="loginform-username" class="form-control" name="LoginForm[username]" autofocus=""></div>
+
+                            <div class="col-lg-10"><p class="help-block help-block-error">Usuario es requerido</p></div>
+</div>        <div class="form-group field-loginform-password required has-success">
+<label class="col-lg-2 control-label" for="loginform-password">Clave</label>
+
+                            <div class="col-lg-10"><input type="password" id="loginform-password" class="form-control" name="LoginForm[password]"></div>
+
+                            <div class="col-lg-10"><p class="help-block help-block-error"></p></div>
+</div>        <div class="form-group field-loginform-rememberme has-success">
+<div class="col-lg-offset-1 col-lg-5"><input type="hidden" name="LoginForm[rememberMe]" value="0"><input type="checkbox" id="loginform-rememberme" name="LoginForm[rememberMe]" value="1" checked=""> <label for="loginform-rememberme">Recuerda me</label></div>
+<div class="col-lg-6"><p class="help-block help-block-error"></p></div>
+</div>
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Entrar', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
+                <?= Html::a('Entrar', ['/site/main'], ['class'=>'btn btn-primary']) ?>
+        </div>
         </div>
 
-    <?php ActiveForm::end(); ?>
+    </form>
 
     <div class="col-lg-offset-1" style="color:#999;">
        <!-- You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>

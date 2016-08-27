@@ -36,7 +36,12 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('login');
+    }
+
+    public function actionMain()
+    {
+        return $this->render('main');
     }
 
     /**
@@ -46,7 +51,7 @@ class SiteController extends BaseController
      */
     public function actionLogin()
     {
-        if (!Yii::$app->user->isGuest) {
+        /*if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
 
@@ -54,10 +59,11 @@ class SiteController extends BaseController
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
         	Log::log(Log::LOGIN);
             return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+        }*/
+        
+//return $this->render('index');
+        //return $this->goHome();
+        return $this->render('login');
     }
 
     /**
