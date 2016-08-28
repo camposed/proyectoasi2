@@ -53,13 +53,13 @@ CREATE TABLE `actividad_planificada` (
   `periodicidad` varchar(45) DEFAULT NULL,
   `dias` varchar(15) DEFAULT NULL,
   `id_plan` int(11) DEFAULT NULL,
-  `id_colonia` int(11) NOT NULL,
+  `id_ruta` int(11) DEFAULT NULL,
   `actividad` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_actividad_planificacion`),
   KEY `id_actividad_fk_idx` (`actividad`),
   KEY `id_plan_fk_idx` (`id_plan`),
-  KEY `fk_actividad_planificada_colonia1_idx` (`id_colonia`),
-  CONSTRAINT `fk_actividad_planificada_colonia1` FOREIGN KEY (`id_colonia`) REFERENCES `colonia` (`id_colonia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_actividad_planificada_ruta_idx` (`id_ruta`),
+  CONSTRAINT `fk_actividad_planificada_ruta` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_actividad_fk` FOREIGN KEY (`actividad`) REFERENCES `actividad` (`id_actividad`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `id_plan_fk` FOREIGN KEY (`id_plan`) REFERENCES `plan` (`id_plan`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -837,6 +837,58 @@ LOCK TABLES `rol` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ruta`
+--
+
+DROP TABLE IF EXISTS `ruta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ruta` (
+  `id_ruta` int(11) NOT NULL,
+  `nombre` varchar(45) NOT NULL,
+  PRIMARY KEY (`id_ruta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ruta`
+--
+
+LOCK TABLES `ruta` WRITE;
+/*!40000 ALTER TABLE `ruta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ruta` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ruta_colonia`
+--
+
+DROP TABLE IF EXISTS `ruta_colonia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ruta_colonia` (
+  `id_ruta_colonia` int(11) NOT NULL,
+  `id_ruta` int(11) NOT NULL,
+  `id_colonia` int(11) NOT NULL,
+  `orden` smallint(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_ruta_colonia`),
+  KEY `ruta_colonia_ruta_fk_idx` (`id_ruta`),
+  KEY `ruta_colonia_colonia_idx` (`id_colonia`),
+  CONSTRAINT `ruta_colonia_colonia` FOREIGN KEY (`id_colonia`) REFERENCES `colonia` (`id_colonia`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `ruta_colonia_ruta_fk` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ruta_colonia`
+--
+
+LOCK TABLES `ruta_colonia` WRITE;
+/*!40000 ALTER TABLE `ruta_colonia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ruta_colonia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `solicitud`
 --
 
@@ -855,11 +907,14 @@ CREATE TABLE `solicitud` (
   `id_fuente` int(11) NOT NULL,
   `id_usuario` int(11) DEFAULT NULL,
   `referencia` varchar(45) DEFAULT NULL,
+  `id_ruta` int(11) NOT NULL,
   PRIMARY KEY (`id_solicitud`),
   KEY `solicitud_estado_fk_idx` (`id_estado`),
   KEY `solicitud_fuente_fk_idx` (`id_fuente`),
+  KEY `solicitud_ruta_fk_idx` (`id_ruta`),
   CONSTRAINT `solicitud_estado_fk` FOREIGN KEY (`id_estado`) REFERENCES `estado` (`id_estado`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `solicitud_fuente_fk` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id_fuente`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `solicitud_fuente_fk` FOREIGN KEY (`id_fuente`) REFERENCES `fuente` (`id_fuente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `solicitud_ruta_fk` FOREIGN KEY (`id_ruta`) REFERENCES `ruta` (`id_ruta`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -960,4 +1015,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-25 20:05:26
+-- Dump completed on 2016-08-28  7:23:03
