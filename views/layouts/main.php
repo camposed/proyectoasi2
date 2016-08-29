@@ -6,17 +6,9 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use app\assets\AppAsset;
+//use app\assets\AppAsset;
 use util\MenuMaker;
 
-
-
-
-AppAsset::register($this);
-	$this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => '/img/favicon.png']);
-	$this->registerJsFile(Yii::$app->request->baseUrl.'/js/Chart.min.js',['depends' => [\yii\web\JqueryAsset::className()],'position'=>\yii\web\View::POS_END]);
-	$this->registerJsFile(Yii::$app->request->baseUrl.'/js/index.js',['depends' => [\yii\web\JqueryAsset::className()],'position'=>\yii\web\View::POS_END]);
-	
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -27,59 +19,99 @@ AppAsset::register($this);
     <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/reset.css" rel="stylesheet" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+
+
+     <!-- Bootstrap core CSS     -->
+    <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/paper-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/demo.css" rel="stylesheet" />
+
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="<?php echo Yii::$app->request->baseUrl; ?>/css/themify-icons.css" rel="stylesheet">
+
+
+
     <?php $this->head() ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
-<div class="wrap">
+
+
+<div class="wrapper">
+
+    <?= $content ?>
+
+</div>
+
+
+</body>
+
     <?php
-    NavBar::begin([
-        'brandLabel' => Html::img('@web/img/logo-blanco.png',['alt'=>Yii::$app->name]),
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Inicio', 'url' => ['/site/index']],
-            Yii::$app->user->isGuest ? (['label' => 'Logeo', 'url' => ['/site/login']]) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout',
-                    ['class' => 'btn btn-link']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
+//AppAsset::register($this);
+  //  $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'href' => '/img/favicon.png']);
+   // $this->registerJsFile(Yii::$app->request->baseUrl.'/js/Chart.min.js',['depends' => [\yii\web\JqueryAsset::className()],'position'=>\yii\web\View::POS_END]);
+    //$this->registerJsFile(Yii::$app->request->baseUrl.'/js/index.js',['depends' => [\yii\web\JqueryAsset::className()],'position'=>\yii\web\View::POS_END]);
+    
     ?>
 
-    <div id="wrapper">
-        <!--  //Breadcrumbs::widget(['links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],])  -->
+    <!--   Core JS Files   -->
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/bootstrap.min.js" type="text/javascript"></script>
 
-        <!-- Sidebar -->
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/bootstrap-checkbox-radio.js"></script>
 
-        <?php if(!Yii::$app->user->getIsGuest()){ ?>
-        <div id="sidebar-wrapper">
-                <ul class="sidebar-nav">
-                    <?= MenuMaker::make(yii::$app->user->id) ?>
-                </ul>
-        </div>
-        <?php }?>
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <?= $content ?>
-            </div>
+    <!--  Charts Plugin -->
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/chartist.min.js"></script>
 
-        </div>
-    </div>
-</div>
+    <!--  Notifications Plugin    -->
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/paper-dashboard.js"></script>
+
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="<?php echo Yii::$app->request->baseUrl; ?>/js/demo.js"></script>
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'ti-gift',
+                message: "Welcome to <b>Paper Dashboard</b> - a beautiful Bootstrap freebie for your next project."
+
+            },{
+                type: 'success',
+                timer: 4000
+            });
+
+        });
+    </script>
+
+</html>
+
+                
+            
 
 <?php $this->endBody() ?>
 

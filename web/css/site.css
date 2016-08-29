@@ -93,7 +93,7 @@ a.desc:after {
 /************************************/
 /*       CUSTOM FROM HERE!!!        */
 /************************************/
-.navbar{background:rgba(24, 104, 179, 0.8) !important; height: 75px;}
+/*.navbar{background:rgba(24, 104, 179, 0.8) !important; height: 75px;}*/
 .wrap > .container {  padding: 75px 15px 20px;}
 .navbar-inverse .navbar-nav > li >a{color:#ffffff;}
 
