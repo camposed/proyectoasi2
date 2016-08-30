@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Cargo;
-use app\models\CargoSearch;
+use app\models\Empleado;
+use app\models\EmpleadoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CargoController implements the CRUD actions for Cargo model.
+ * EmpleadoController implements the CRUD actions for Empleado model.
  */
-class CargoController extends Controller
+class EmpleadoController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class CargoController extends Controller
     }
 
     /**
-     * Lists all Cargo models.
+     * Lists all Empleado models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CargoSearch();
+        $searchModel = new EmpleadoSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class CargoController extends Controller
     }
 
     /**
-     * Displays a single Cargo model.
+     * Displays a single Empleado model.
      * @param integer $id
      * @return mixed
      */
@@ -57,16 +57,16 @@ class CargoController extends Controller
     }
 
     /**
-     * Creates a new Cargo model.
+     * Creates a new Empleado model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Cargo();
+        $model = new Empleado();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_cargo]);
+            return $this->redirect(['view', 'id' => $model->id_empleado]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,7 +75,7 @@ class CargoController extends Controller
     }
 
     /**
-     * Updates an existing Cargo model.
+     * Updates an existing Empleado model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,7 +85,7 @@ class CargoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_cargo]);
+            return $this->redirect(['view', 'id' => $model->id_empleado]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,7 +94,7 @@ class CargoController extends Controller
     }
 
     /**
-     * Deletes an existing Cargo model.
+     * Deletes an existing Empleado model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class CargoController extends Controller
     }
 
     /**
-     * Finds the Cargo model based on its primary key value.
+     * Finds the Empleado model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Cargo the loaded model
+     * @return Empleado the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Cargo::findOne($id)) !== null) {
+        if (($model = Empleado::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

@@ -4,116 +4,6 @@
 $this->title = yii::$app->params ['empresa'];
 ?>
 
-    <div class="sidebar" data-background-color="white" data-active-color="danger">
-
-    <!--
-        Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-        Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-    -->
-
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
-                </a>
-            </div>
-
-            <ul class="nav">
-                <li class="active">
-                    <a href="dashboard.html">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="user.html">
-                        <i class="ti-user"></i>
-                        <p>User Profile</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="table.html">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Table List</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="ti-text"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="ti-map"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="notifications.html">
-                        <i class="ti-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="main-panel">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="ti-panel"></i>
-                                <p>Stats</p>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-bell"></i>
-                                    <p class="notification">5</p>
-                                    <p>Notifications</p>
-                                    <b class="caret"></b>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="ti-settings"></i>
-                                <p>Settings</p>
-                            </a>
-                        </li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-
-        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -122,20 +12,20 @@ $this->title = yii::$app->params ['empresa'];
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-warning text-center">
-                                            <i class="ti-server"></i>
+                                            <i class="ti-user"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Capacity</p>
-                                            105GB
+                                            <p>Empleados</p>
+                                            1
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
+                                        <i class="ti-reload"></i> Activos
                                     </div>
                                 </div>
                             </div>
@@ -147,20 +37,20 @@ $this->title = yii::$app->params ['empresa'];
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-success text-center">
-                                            <i class="ti-wallet"></i>
+                                            <i class="ti-truck"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Revenue</p>
-                                            $1,345
+                                            <p>Automotores</p>
+                                            3
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-calendar"></i> Last day
+                                        <i class="ti-calendar"></i> 1 en ruta
                                     </div>
                                 </div>
                             </div>
@@ -172,12 +62,12 @@ $this->title = yii::$app->params ['empresa'];
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-danger text-center">
-                                            <i class="ti-pulse"></i>
+                                            <i class="ti-pencil-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Errors</p>
+                                            <p>Solicitudes</p>
                                             23
                                         </div>
                                     </div>
@@ -185,7 +75,7 @@ $this->title = yii::$app->params ['empresa'];
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-timer"></i> In the last hour
+                                        <i class="ti-timer"></i> 3 pendientes
                                     </div>
                                 </div>
                             </div>
@@ -197,27 +87,27 @@ $this->title = yii::$app->params ['empresa'];
                                 <div class="row">
                                     <div class="col-xs-5">
                                         <div class="icon-big icon-info text-center">
-                                            <i class="ti-twitter-alt"></i>
+                                            <i class="ti-map-alt"></i>
                                         </div>
                                     </div>
                                     <div class="col-xs-7">
                                         <div class="numbers">
-                                            <p>Followers</p>
-                                            +45
+                                            <p>Rutas</p>
+                                            3
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <hr />
                                     <div class="stats">
-                                        <i class="ti-reload"></i> Updated now
+                                        <i class="ti-reload"></i> 1 activa
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="display:none;">
 
                     <div class="col-md-12">
                         <div class="card">
@@ -243,24 +133,34 @@ $this->title = yii::$app->params ['empresa'];
                     </div>
                 </div>
                 <div class="row">
+                    <div class="card card-map">
+                    <div class="header">
+                        <h4 class="title">Mapa de Rutas</h4>
+                    </div>
+                    <div class="map">
+                        <div id="map"></div>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Email Statistics</h4>
-                                <p class="category">Last Campaign Performance</p>
+                                <h4 class="title">Estadística de Solicitudes</h4>
+                                <p class="category">Detalle</p>
                             </div>
                             <div class="content">
                                 <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
 
                                 <div class="footer">
                                     <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                        <i class="fa fa-circle text-info"></i> Aceptadas
+                                        <i class="fa fa-circle text-danger"></i> Pendientes
+                                        <i class="fa fa-circle text-warning"></i> Trabajando
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="ti-timer"></i> Campaign sent 2 days ago
+                                        <i class="ti-timer"></i> 
                                     </div>
                                 </div>
                             </div>
@@ -269,20 +169,20 @@ $this->title = yii::$app->params ['empresa'];
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2015 Sales</h4>
-                                <p class="category">All products including Taxes</p>
+                                <h4 class="title">Desechos Sólidos 2016</h4>
+                                <p class="category">Reporte</p>
                             </div>
                             <div class="content">
                                 <div id="chartActivity" class="ct-chart"></div>
 
                                 <div class="footer">
                                     <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-warning"></i> BMW 5 Series
+                                        <i class="fa fa-circle text-info"></i> Ruta 1
+                                        <i class="fa fa-circle text-warning"></i> Ruta 2
                                     </div>
                                     <hr>
                                     <div class="stats">
-                                        <i class="ti-check"></i> Data information certified
+                                        <i class="ti-check"></i> 
                                     </div>
                                 </div>
                             </div>
@@ -290,125 +190,9 @@ $this->title = yii::$app->params ['empresa'];
                     </div>
                 </div>
             </div>
-        </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-
-                        <li>
-                            <a href="http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://blog.creative-tim.com">
-                               Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
-                </div>
-            </div>
-        </footer>
-
-    </div>
-
-
-<div class="site-index" style="display:none;">
-
-	<div class="jumbotron"></div>
-
-	<div class="body-content">
-		<div class="row">
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<div class="caption text-onbox">
-						<h4>Tonelaje Recolectado</h4>
-						<p>
-							<canvas id="tonelaje-chart" width="400" height="250"></canvas>
-						</p>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<div class="caption text-onbox">
-						<h4>Gasto de Conbustible</h4>
-						<p>
-							<canvas id="combustible-chart" width="400" height="250"></canvas>
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<div class="caption text-onbox">
-						<h4>Solicitudes</h4>
-						<div>
-							<ul class="list-group">
-								<li class="list-group-item"><a href="#">00001- Arbol ostaculizando calle Col. Luisa</a></li>
-								<li class="list-group-item"><a href="#">00002- Tragante tapado, mal olor entrada del mercado</a></li>
-								<li class="list-group-item"><a href="#">00003- Derrumbe impide paso de peatones</a></li>
-								<li class="list-group-item"><a href="#">00004- Col Santa Maria, sin agua por 2 semanas</a></li>
-								<li class="list-group-item"><a href="#">00005- Fumigación en Col. Apulca</a></li>
-								<li class="list-group-item"><a href="#">00006- Limpieza de Cunetas calle principal</a></li>
-							</ul>
-							<a href="#">Más</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<div class="caption text-onbox">
-						<h4>Ordenes de Trabajo</h4>
-						<p>
-							
-						</p>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<div class="caption text-onbox">
-						<h4>Planificación Semana</h4>
-						<p>
-							
-						</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-sm-6 col-md-4">
-				<div class="thumbnail">
-					<div class="caption text-onbox">
-						<h4>Otras cosas</h4>
-						<p>
-							
-						</p>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
+        
+<script>
+        $(document).ready(function(){
+            demo.initGoogleMaps();
+        });
+    </script>

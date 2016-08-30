@@ -13,7 +13,7 @@ use Yii;
  *
  * @property Menu[] $menus
  * @property UsuarioRol[] $usuarioRols
- * @property Usuario[] $idUsuarios
+ * @property Usuario[] $usuarios
  */
 class Rol extends \yii\db\ActiveRecord
 {
@@ -55,7 +55,7 @@ class Rol extends \yii\db\ActiveRecord
      */
     public function getMenus()
     {
-        return $this->hasMany(Menu::className(), ['rol' => 'id_rol']);
+        return $this->hasMany(Menu::className(), ['id_rol' => 'id_rol']);
     }
 
     /**
@@ -63,14 +63,14 @@ class Rol extends \yii\db\ActiveRecord
      */
     public function getUsuarioRols()
     {
-        return $this->hasMany(UserRol::className(), ['id_rol' => 'id_rol']);
+        return $this->hasMany(UsuarioRol::className(), ['id_rol' => 'id_rol']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdUsuarios()
+    public function getUsuarios()
     {
-        return $this->hasMany(User::className(), ['id_usuario' => 'id_usuario'])->viaTable('usuario_rol', ['id_rol' => 'id_rol']);
+        return $this->hasMany(Usuario::className(), ['id_usuario' => 'id_usuario'])->viaTable('usuario_rol', ['id_rol' => 'id_rol']);
     }
 }

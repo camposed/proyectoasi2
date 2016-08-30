@@ -10,10 +10,10 @@ use Yii;
  * @property integer $id_rol
  * @property integer $id_usuario
  *
- * @property Rol $idRol
- * @property Usuario $idUsuario
+ * @property Rol $rol
+ * @property Usuario $usuario
  */
-class UserRol extends \yii\db\ActiveRecord
+class UsuarioRol extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -50,7 +50,7 @@ class UserRol extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdRol()
+    public function getRol()
     {
         return $this->hasOne(Rol::className(), ['id_rol' => 'id_rol']);
     }
@@ -58,8 +58,8 @@ class UserRol extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdUsuario()
+    public function getUsuario()
     {
-        return $this->hasOne(User::className(), ['id_usuario' => 'id_usuario']);
+        return $this->hasOne(Usuario::className(), ['id_usuario' => 'id_usuario']);
     }
 }

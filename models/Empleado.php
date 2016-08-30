@@ -13,13 +13,17 @@ use Yii;
  * @property string $direccion
  * @property string $telefono
  * @property string $celular
- * @property integer $edad
+ * @property string $fnacimiento
  * @property integer $cargo
  *
  * @property Cargo $cargo0
+ * @property OrdenEmpleado[] $ordenEmpleados
+ * @property OrdenTrabajo[] $ordens
+ * @property Personal[] $personals
+ * @property Equipo[] $equipos
  * @property Usuario[] $usuarios
  */
-class Employee extends \yii\db\ActiveRecord
+class Empleado extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -35,8 +39,9 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_empleado', 'nombres', 'apellidos', 'edad', 'cargo'], 'required'],
-            [['id_empleado', 'edad', 'cargo'], 'integer'],
+            [['id_empleado', 'nombres', 'apellidos', 'fnacimiento', 'cargo'], 'required'],
+            [['id_empleado', 'cargo'], 'integer'],
+            [['fnacimiento'], 'safe'],
             [['nombres', 'apellidos'], 'string', 'max' => 100],
             [['direccion'], 'string', 'max' => 500],
             [['telefono', 'celular'], 'string', 'max' => 10],
@@ -56,7 +61,7 @@ class Employee extends \yii\db\ActiveRecord
             'direccion' => 'Direccion',
             'telefono' => 'Telefono',
             'celular' => 'Celular',
-            'edad' => 'Edad',
+            'fnacimiento' => 'Fnacimiento',
             'cargo' => 'Cargo',
         ];
     }
@@ -66,7 +71,39 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getCargo0()
     {
-        return $this->hasOne(User::className(), ['id_cargo' => 'cargo']);
+        return $this->hasOne(Cargo::className(), ['id_cargo' => 'cargo']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrdenEmpleados()
+    {
+        return $this->hasMany(OrdenEmpleado::className(), ['id_empleado' => 'id_empleado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrdens()
+    {
+        return $this->hasMany(OrdenTrabajo::className(), ['id_orden_trabajo' => 'id_orden'])->viaTable('orden_empleado', ['id_empleado' => 'id_empleado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPersonals()
+    {
+        return $this->hasMany(Personal::className(), ['id_empleado' => 'id_empleado']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEquipos()
+    {
+        return $this->hasMany(Equipo::className(), ['id_equipo' => 'id_equipo'])->viaTable('personal', ['id_empleado' => 'id_empleado']);
     }
 
     /**
@@ -74,6 +111,6 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getUsuarios()
     {
-        return $this->hasMany(User::className(), ['id_empleado' => 'id_empleado']);
+        return $this->hasMany(Usuario::className(), ['id_empleado' => 'id_empleado']);
     }
 }

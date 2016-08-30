@@ -36,6 +36,7 @@ class SiteController extends BaseController
      */
     public function actionIndex()
     {
+        $this->layout = 'login';
         return $this->render('login');
     }
 
@@ -63,6 +64,7 @@ class SiteController extends BaseController
         
 //return $this->render('index');
         //return $this->goHome();
+        $this->layout = 'login';
         return $this->render('login');
     }
 
