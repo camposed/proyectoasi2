@@ -5,13 +5,17 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "Plan".
+ * This is the model class for table "plan".
  *
  * @property integer $id_plan
  * @property string $fecha_inicia
  * @property string $fecha_final
  * @property string $descripcion
  * @property string $estado
+ *
+ * @property ActividadPlanificada[] $actividadPlanificadas
+ * @property DiaAsueto[] $diaAsuetos
+ * @property Equipo[] $equipos
  */
 class Plan extends \yii\db\ActiveRecord
 {
@@ -20,7 +24,7 @@ class Plan extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'Plan';
+        return 'plan';
     }
 
     /**
@@ -43,11 +47,35 @@ class Plan extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_plan' => 'Código',
-            'fecha_inicia' => 'Fecha Inicial',
+            'id_plan' => 'Id Plan',
+            'fecha_inicia' => 'Fecha Inicia',
             'fecha_final' => 'Fecha Final',
-            'descripcion' => 'Nombre',
+            'descripcion' => 'Descripcion',
             'estado' => 'Estado',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActividadPlanificadas()
+    {
+        return $this->hasMany(ActividadPlanificada::className(), ['id_plan' => 'id_plan']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDiaAsuetos()
+    {
+        return $this->hasMany(DiaAsueto::className(), ['plan' => 'id_plan']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEquipos()
+    {
+        return $this->hasMany(Equipo::className(), ['id_plan' => 'id_plan']);
     }
 }
