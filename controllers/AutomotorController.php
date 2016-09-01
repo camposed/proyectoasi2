@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Empleado;
+use app\models\Automotor;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * EmpleadoController implements the CRUD actions for Empleado model.
+ * AutomotorController implements the CRUD actions for Automotor model.
  */
-class EmpleadoController extends Controller
+class AutomotorController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,13 +30,13 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Lists all Empleado models.
+     * Lists all Automotor models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Empleado::find(),
+            'query' => Automotor::find(),
         ]);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Displays a single Empleado model.
+     * Displays a single Automotor model.
      * @param integer $id
      * @return mixed
      */
@@ -57,16 +57,16 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Creates a new Empleado model.
+     * Creates a new Automotor model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Empleado();
+        $model = new Automotor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_empleado]);
+            return $this->redirect(['view', 'id' => $model->id_automotor]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -75,7 +75,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Updates an existing Empleado model.
+     * Updates an existing Automotor model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -85,7 +85,7 @@ class EmpleadoController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_empleado]);
+            return $this->redirect(['view', 'id' => $model->id_automotor]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -94,7 +94,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Deletes an existing Empleado model.
+     * Deletes an existing Automotor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Finds the Empleado model based on its primary key value.
+     * Finds the Automotor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Empleado the loaded model
+     * @return Automotor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Empleado::findOne($id)) !== null) {
+        if (($model = Automotor::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
