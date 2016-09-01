@@ -68,3 +68,10 @@
 .table-upgrade td:nth-child(3){
     text-align: center;
 }
+
+html body div.wrapper div.main-panel div.content div.plan-view div ul.nav.nav-tabs li.active a{
+	border-color: #5c5c5c #5c5c5c transparent;
+}
+.nav-tabs{
+	border-bottom: 1px solid #5c5c5c;
+}

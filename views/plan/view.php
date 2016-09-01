@@ -42,36 +42,80 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= date_format(date_create($model->fecha_inicia),'d/m/Y') .' - '. date_format(date_create($model->fecha_final),'d/m/Y') ?>
         </div>
     </div>
-    <div class="row">
-    	<hr />
-    	<h4>Detalle de actividades del plan</h4>
-        <div>
-        <?= GridView::widget([
-        'dataProvider' => $actividades,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+    
+ <div style="margin-top: 30px;">
 
-               [
-                    'attribute' => 'fecha_inicio',
-                    'format' => ['date', 'php:d/m/Y'],
-               		'label'=>'Fecha Inicial',
-               ]
-            ,
-            [
-                'attribute' => 'fecha_final',
-                'format' => ['date', 'php:d/m/Y'],
-            		'label'=>'Fecha Final',
-            ],
-        	[
-        		'attribute' => 'tipo',
-        	],
-        		[
-        		'attribute' => 'actividad',
-        		],
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-        </div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#actividades" aria-controls="home" role="tab" data-toggle="tab">Actividades</a></li>
+    <li role="presentation"><a href="#equipo" aria-controls="profile" role="tab" data-toggle="tab">Equipo</a></li>
+    
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="actividades">
+    		
+		    	<div style="text-align: right; margin-bottom: 10px;margin-top: 10px;" >	
+		    		<?= Html::a('Crear Actividad', ['actividad-planificada/create'], ['class' => 'btn btn-success']) ?>
+		    	</div>
+		        <div>
+		        
+				        <?= GridView::widget([
+				        'dataProvider' => $actividades,
+				        'columns' => [
+				            ['class' => 'yii\grid\SerialColumn'],
+				
+				               [
+				                    'attribute' => 'fecha_inicio',
+				                    'format' => ['date', 'php:d/m/Y'],
+				               		'label'=>'Fecha Inicial',
+				               ]
+				            ,
+				            [
+				                'attribute' => 'fecha_final',
+				                'format' => ['date', 'php:d/m/Y'],
+				            		'label'=>'Fecha Final',
+				            ],
+				        	[
+				        		'attribute' => 'tipo',
+				        	],
+				        		[
+				        		'attribute' => 'actividad',
+				        		],
+				            ['class' => 'yii\grid\ActionColumn'],
+				        ],
+				    ]); ?>
+		        </div>
+   </div>
+    <div role="tabpanel" class="tab-pane" id="equipo">
+    
+    	<div style="text-align: right; margin-bottom: 10px;margin-top: 10px;" >	
+		    		<?= Html::a('Crear Equipo', ['equipo/create'], ['class' => 'btn btn-success']) ?>
+		    	</div>
+		        <div>
+		        
+				        <?= GridView::widget([
+				        'dataProvider' => $equipo,
+				        'columns' => [
+				            ['class' => 'yii\grid\SerialColumn'],
+				
+				               [
+				                    'attribute' => 'descripcion',
+				               		'label'=>'Descripción',
+				               ]
+				            ,
+				            [
+				                'attribute' => 'estado',
+				            	'label'=>'estado',
+				            ],
+				            ['class' => 'yii\grid\ActionColumn'],
+				        ],
+				    ]); ?>
+		        </div>
     </div>
+  </div>
+
+</div>
 
 </div>

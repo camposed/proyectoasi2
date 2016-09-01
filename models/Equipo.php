@@ -14,11 +14,11 @@ use Yii;
  * @property integer $id_plan
  *
  * @property AutomorEquipo[] $automorEquipos
- * @property Automotor[] $automors
- * @property Plan $plan
+ * @property Automotor[] $idAutomors
+ * @property Plan $idPlan
  * @property OrdenTrabajo[] $ordenTrabajos
  * @property Personal[] $personals
- * @property Empleado[] $empleados
+ * @property Empleado[] $idEmpleados
  */
 class Equipo extends \yii\db\ActiveRecord
 {
@@ -70,7 +70,7 @@ class Equipo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAutomors()
+    public function getIdAutomors()
     {
         return $this->hasMany(Automotor::className(), ['id_automotor' => 'id_automor'])->viaTable('automor_equipo', ['id_equipo' => 'id_equipo']);
     }
@@ -78,7 +78,7 @@ class Equipo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getPlan()
+    public function getIdPlan()
     {
         return $this->hasOne(Plan::className(), ['id_plan' => 'id_plan']);
     }
@@ -102,7 +102,7 @@ class Equipo extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmpleados()
+    public function getIdEmpleados()
     {
         return $this->hasMany(Empleado::className(), ['id_empleado' => 'id_empleado'])->viaTable('personal', ['id_equipo' => 'id_equipo']);
     }

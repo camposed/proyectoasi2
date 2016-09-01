@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Plan;
 use app\models\ActividadPlanificada;
+use app\models\Equipo;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,9 +58,12 @@ class PlanController extends Controller
         return $this->render('view', [
             'model' => $plan,
         	'actividades'=>
-        			
         		new ActiveDataProvider([
         			'query'=>ActividadPlanificada::find(['id_plan'=>$id])
+        		]),
+        	'equipo' =>
+        		new ActiveDataProvider([
+        				'query'=>Equipo::find(['id_plan'=>$id])
         		])
         ]);
     }
