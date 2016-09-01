@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Plan */
@@ -43,7 +43,35 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="row">
-        <div></div>
+    	<hr />
+    	<h4>Detalle de actividades del plan</h4>
+        <div>
+        <?= GridView::widget([
+        'dataProvider' => $actividades,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+               [
+                    'attribute' => 'fecha_inicio',
+                    'format' => ['date', 'php:d/m/Y'],
+               		'label'=>'Fecha Inicial',
+               ]
+            ,
+            [
+                'attribute' => 'fecha_final',
+                'format' => ['date', 'php:d/m/Y'],
+            		'label'=>'Fecha Final',
+            ],
+        	[
+        		'attribute' => 'tipo',
+        	],
+        		[
+        		'attribute' => 'actividad',
+        		],
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+        </div>
     </div>
 
 </div>

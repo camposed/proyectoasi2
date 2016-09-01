@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Plan;
 use app\models\ActividadPlanificada;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -11,9 +10,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PlanController implements the CRUD actions for Plan model.
+ * ActividadPlanificadaController implements the CRUD actions for ActividadPlanificada model.
  */
-class PlanController extends Controller
+class ActividadPlanificadaController extends Controller
 {
     /**
      * @inheritdoc
@@ -31,13 +30,13 @@ class PlanController extends Controller
     }
 
     /**
-     * Lists all Plan models.
+     * Lists all ActividadPlanificada models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Plan::find(),
+            'query' => ActividadPlanificada::find(),
         ]);
 
         return $this->render('index', [
@@ -46,35 +45,28 @@ class PlanController extends Controller
     }
 
     /**
-     * Displays a single Plan model.
+     * Displays a single ActividadPlanificada model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-    	 
-    	$plan =  $this->findModel($id);
         return $this->render('view', [
-            'model' => $plan,
-        	'actividades'=>
-        			
-        		new ActiveDataProvider([
-        			'query'=>ActividadPlanificada::find(['id_plan'=>$id])
-        		])
+            'model' => $this->findModel($id),
         ]);
     }
 
     /**
-     * Creates a new Plan model.
+     * Creates a new ActividadPlanificada model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Plan();
+        $model = new ActividadPlanificada();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_plan]);
+            return $this->redirect(['view', 'id' => $model->id_actividad_planificacion]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -83,7 +75,7 @@ class PlanController extends Controller
     }
 
     /**
-     * Updates an existing Plan model.
+     * Updates an existing ActividadPlanificada model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -93,7 +85,7 @@ class PlanController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_plan]);
+            return $this->redirect(['view', 'id' => $model->id_actividad_planificacion]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -102,7 +94,7 @@ class PlanController extends Controller
     }
 
     /**
-     * Deletes an existing Plan model.
+     * Deletes an existing ActividadPlanificada model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -115,15 +107,15 @@ class PlanController extends Controller
     }
 
     /**
-     * Finds the Plan model based on its primary key value.
+     * Finds the ActividadPlanificada model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Plan the loaded model
+     * @return ActividadPlanificada the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Plan::findOne($id)) !== null) {
+        if (($model = ActividadPlanificada::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
