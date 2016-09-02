@@ -42,7 +42,7 @@ class Ruta extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id_ruta' => 'Id Ruta',
+            'id_ruta' => 'Código',
             'nombre' => 'Nombre',
         ];
     }
