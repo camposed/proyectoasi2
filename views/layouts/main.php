@@ -83,7 +83,7 @@ use util\MenuMaker;
                     <?php echo Html::a('<i class="ti-archive"></i><p>Empleados</p>',["empleado/index"]); ?>
                 </li>
                 <li>
-                    <?php echo Html::a('<i class="ti-check-box"></i><p>Plan</p>',["empleado/index"]); ?>
+                    <?php echo Html::a('<i class="ti-check-box"></i><p>Planes</p>',["plan/index"]); ?>
                 </li>
                 
             </ul>
