@@ -55,7 +55,7 @@ class RutaController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'colonias'=>new ActiveDataProvider([
-                            'query' => RutaColonia::find(['id_ruta'=>$id]),
+                            'query' => RutaColonia::find()->where(['id_ruta'=>$id]),
             ])
         ]);
     }
