@@ -59,11 +59,11 @@ class PlanController extends Controller
             'model' => $plan,
         	'actividades'=>
         		new ActiveDataProvider([
-        			'query'=>ActividadPlanificada::find(['id_plan'=>$id])
+        			'query'=>ActividadPlanificada::find()->where(['id_plan'=>$id])
         		]),
         	'equipo' =>
         		new ActiveDataProvider([
-        				'query'=>Equipo::find(['id_plan'=>$id])
+        				'query'=>Equipo::find()->where(['id_plan'=>$id])
         		])
         ]);
     }
