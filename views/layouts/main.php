@@ -88,6 +88,21 @@ use util\MenuMaker;
                 <li>
                     <?php echo Html::a('<i class="ti-map"></i><p>Rutas</p>',["ruta/index"]); ?>
                 </li>
+				<li>
+                    <?php echo Html::a('<i class="ti-home"></i><p>Colonias</p>',["colonia/index"]); ?>
+                </li>
+				<li>
+                    <?php echo Html::a('<i class="ti-location-pin"></i><p>Distritos</p>',["distrito/index"]); ?>
+                </li>
+				<li>
+                    <?php echo Html::a('<i class="ti-list"></i><p>Tipos</p>',["tipo/index"]); ?>
+                </li>
+				<li>
+                    <?php echo Html::a('<i class="ti-file"></i><p>Tablas</p>',["catalogo-tabla/index"]); ?>
+                </li>
+				<li>
+                    <?php echo Html::a('<i class="ti-pencil"></i><p>Estados</p>',["estado/index"]); ?>
+                </li>
             </ul>
         </div>
     </div>
