@@ -33,7 +33,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Fecha Final',
             ],
             'descripcion',
-            'estado',
+            [
+                'attribute'=>'estado',
+                'value'=>function ($model){
+                    $st = array('A'=>'Aprobado','R'=>'Registrado','C'=>'Cancelado');
+                    return $st[$model->estado];
+                }
+            ],
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

@@ -9,6 +9,15 @@ use yii\grid\GridView;
 //$this->title = $model->id_plan;
 $this->params['breadcrumbs'][] = ['label' => 'Plans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+$estaus = array(
+    "A"=>"Aprobado",
+    "R"=>"Registrado",
+    "C"=>"Cancelado"
+);
+
+
+
 ?>
 <style>
     .plan-view{
@@ -30,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-3">
             <label>Estado:</label>
-            <span><?= $model->estado ?></span>
+            <span><?= $estaus[$model->estado] ?></span>
         </div>
     </div>
 
@@ -75,10 +84,17 @@ $this->params['breadcrumbs'][] = $this->title;
 				            [
 				                'attribute' => 'fecha_final',
 				                'format' => ['date', 'php:d/m/Y'],
-				            		'label'=>'Fecha Final',
+                                'label'=>'Fecha Final',
 				            ],
 				        	[
 				        		'attribute' => 'tipo',
+                                'value' => function ($model){
+                                    $tA = array(
+                                        "U" => "Unica",
+                                        "P" => "Periodica"
+                                    );
+                                    return $tA[$model->tipo];
+                                }
 				        	],
 				        		[
 				        		'attribute' => 'actividad',
