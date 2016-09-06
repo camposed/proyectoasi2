@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Plan */
 
-//$this->title = $model->id_plan;
+$this->title = "Plan de Trabajo";
 $this->params['breadcrumbs'][] = ['label' => 'Plans', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
@@ -26,10 +26,7 @@ $estaus = array(
 </style>
 <div class="plan-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-
-
+    <h3><?= Html::encode($this->title) ?></h3>
     <div class="row">
         <div class="col-md-1">
             <label>Nombre:</label>

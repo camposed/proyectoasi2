@@ -11,21 +11,13 @@ use yii\widgets\ActiveForm;
 <div class="plan-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
     <?= $form->field($model, 'id_plan')->textInput() ?>
-
     <?= $form->field($model, 'fecha_inicia')->textInput() ?>
-
     <?= $form->field($model, 'fecha_final')->textInput() ?>
-
     <?= $form->field($model, 'descripcion')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'estado')->dropDownList([ 'R' => 'R', 'A' => 'A', 'C' => 'C', ], ['prompt' => '']) ?>
-
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Crear' : 'Guardar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>
