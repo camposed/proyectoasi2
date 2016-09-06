@@ -76,6 +76,7 @@ class PlanController extends Controller
     public function actionCreate()
     {
         $model = new Plan();
+        $model->estado = 'R';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_plan]);
