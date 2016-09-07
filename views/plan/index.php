@@ -8,6 +8,9 @@ use yii\grid\GridView;
 
 $this->title = 'Planes de Trabajo';
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJsFile('@web/js/plan.js',[\yii\web\View::POS_END]);
+
 ?>
 <div class="plan-index">
 
@@ -43,31 +46,19 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]);
-
 ?>
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
 </div>
+<style>
+    .modal-backdrop {background: none;}
+</style>
+<?php
+\yii\bootstrap\Modal::begin([
+    'header' => '<h2>Hello world</h2>',
+    'toggleButton' => ['label' => 'click me'],
+]);
+echo 'Say hello...';
+\yii\bootstrap\Modal::end();
+?>
 
 
 
