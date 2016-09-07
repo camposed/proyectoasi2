@@ -10,6 +10,9 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\widgets\ActiveForm;
+use yii\web\Response;
+
 
 /**
  * PlanController implements the CRUD actions for Plan model.
@@ -67,7 +70,8 @@ class PlanController extends Controller
         		])
         ]);
     }
-
+    
+    
     /**
      * Creates a new Plan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -77,7 +81,7 @@ class PlanController extends Controller
     {
         $model = new Plan();
         $model->estado = 'R';
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_plan]);
         } else {
@@ -96,7 +100,6 @@ class PlanController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id_plan]);
         } else {
@@ -134,4 +137,30 @@ class PlanController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    
+    
+    public function actionValidate(){
+    	$model = new Plan();
+	    $request = \Yii::$app->getRequest();
+	    if ($request->isPost && $model->load($request->post())) {	    	
+	    	Yii::$app->response->format = Response::FORMAT_JSON;
+	        return ActiveForm::validate($model);
+	    }
+    }
+    
+    
+    public function actionLoad($id){
+    	\Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+    	return $this->findModel($id);
+    }
+    
+    public function actionRenderForm($id){
+    	$model = $this->findModel($id);
+    	return $this->renderAjax('_form', [
+    			'model' => $model,
+    			'action'=> 'update?id='.$id
+    	]);
+    }
+    
 }

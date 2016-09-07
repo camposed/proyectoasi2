@@ -33,7 +33,7 @@ class Plan extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_plan', 'fecha_inicia', 'fecha_final'], 'required'],
+            [['fecha_inicia', 'fecha_final'], 'required'],
             [['id_plan'], 'integer'],
             [['fecha_inicia', 'fecha_final'], 'safe'],
             [['estado'], 'string'],

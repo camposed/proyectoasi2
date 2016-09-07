@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Plan;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -17,7 +18,16 @@ $this->registerJsFile('@web/js/plan.js',[\yii\web\View::POS_END]);
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Nuevo Plan', ['create'], ['class' => 'btn btn-success']) ?>
+    <?php
+			\yii\bootstrap\Modal::begin([
+			    'header' => '<h2>Nuevo Plan de Trabajo</h2>',
+			    'toggleButton' => ['label' => 'Nuevo Plan','class'=>'btn btn-success'],
+			]);
+			echo $this->render('create', [
+					'model' => new Plan(),
+			]) ;
+			\yii\bootstrap\Modal::end();
+	?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -43,7 +53,15 @@ $this->registerJsFile('@web/js/plan.js',[\yii\web\View::POS_END]);
                     return $st[$model->estado];
                 }
             ],
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+             'template' => '{view}{update}{delete}',
+            'buttons' => [
+            				'update' => function ($url, $model) {
+            								return Html::a('<span class="glyphicon glyphicon-pencil"></span>', 'javascript:edit('.$model->id_plan.')',
+            										[]);
+            				}
+            	],	
+            ],
         ],
     ]);
 ?>
@@ -51,14 +69,17 @@ $this->registerJsFile('@web/js/plan.js',[\yii\web\View::POS_END]);
 <style>
     .modal-backdrop {background: none;}
 </style>
-<?php
-\yii\bootstrap\Modal::begin([
-    'header' => '<h2>Hello world</h2>',
-    'toggleButton' => ['label' => 'click me'],
-]);
-echo 'Say hello...';
-\yii\bootstrap\Modal::end();
+ <?php
+			\yii\bootstrap\Modal::begin([
+				'id'=>'modaledit',
+			    'header' => '<h2>Editar Plan de Trabajo</h2>',
+			]);
 ?>
+<div id="updateContent"></div>
+<?php 
+			\yii\bootstrap\Modal::end();
+?>
+
 
 
 
