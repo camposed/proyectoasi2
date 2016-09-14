@@ -68,25 +68,25 @@ use util\MenuMaker;
 
             <ul class="nav">
                 <li class="active">
-                    <?php echo Html::a('<i class="ti-panel"></i><p>Inicio</p>',["site/main"]); ?>
+                    <?php echo Html::a('<i class="ti-home"></i><p>Inicio</p>',["site/main"]); ?>
                 </li>
                 <li>
                     <?php echo Html::a('<i class="ti-user"></i><p>Usuarios</p>',["usuario/index"]); ?>
                 </li>
                 <li>
-                    <?php echo Html::a('<i class="ti-clipboard"></i><p>Roles</p>',["rol/index"]); ?>
+                    <?php echo Html::a('<i class="ti-view-list-alt"></i><p>Roles</p>',["rol/index"]); ?>
                 </li>
                 <li>
-                    <?php echo Html::a('<i class="ti-folder"></i><p>Cargos</p>',["cargo/index"]); ?>
+                    <?php echo Html::a('<i class="ti-tag"></i><p>Cargos</p>',["cargo/index"]); ?>
                 </li>
                 <li>
-                    <?php echo Html::a('<i class="ti-archive"></i><p>Empleados</p>',["empleado/index"]); ?>
+                    <?php echo Html::a('<i class="ti-id-badge"></i><p>Empleados</p>',["empleado/index"]); ?>
                 </li>
                 <li>
-                    <?php echo Html::a('<i class="ti-calendar"></i><p>Planes</p>',["plan/index"]); ?>
+                    <?php echo Html::a('<i class="ti-write"></i><p>Planes</p>',["plan/index"]); ?>
                 </li>
                 <li>
-                    <?php echo Html::a('<i class="ti-map"></i><p>Rutas</p>',["ruta/index"]); ?>
+                    <?php echo Html::a('<i class="ti-location-pin"></i><p>Rutas</p>',["ruta/index"]); ?>
                 </li>
                 <li>
                     <?php echo Html::a('<i class="ti-palette"></i><p>Colores</p>',["color/index"]); ?>
@@ -102,6 +102,9 @@ use util\MenuMaker;
                 </li>
                 <li>
                     <?php echo Html::a('<i class="ti-calendar"></i><p>Dias Asueto</p>',["dia-asueto/index"]); ?>
+                </li>
+                <li>
+                    <?php echo Html::a('<i class="ti-layout-menu-v"></i><p>Menu</p>',["menu/index"]); ?>
                 </li>
             </ul>
         </div>
